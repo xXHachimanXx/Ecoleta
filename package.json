@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/xXHachimanXx/Ecoleta#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "ts-node-dev": "^1.0.0-pre.44"
   },
   "devDependencies": {
     "@types/express": "^4.17.6",

@@ -1,0 +1,7 @@
+Para user typescript temos que instalar:
+npm install typescript -D // script para instalação
+npx tsc --init // Criar arquivo de configuração
+npm install ts-node // instalar "Node que executa scripts ts"
+
+executar:
+npx ts-node myfile.ts

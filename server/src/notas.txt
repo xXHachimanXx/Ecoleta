@@ -5,3 +5,35 @@ npm install ts-node // instalar "Node que executa scripts ts"
 
 executar:
 npx ts-node myfile.ts
+
+// padroniza os diretórios
+resolve(__dirname + 'database.sqlite')
+
+// Identificando entidades
+tabelas:
+    - Points
+        -> image
+        -> name
+        -> email
+        -> whatsapp
+        -> latitude
+        -> longitude
+        -> city
+        -> uf
+
+    - Itens
+        -> title
+        -> image
+
+    - point_itens (Relacionamento dos itens que um ponto coleta)
+        -> point_id
+        -> item_id
+
+                                    Tabela pivô 
+    - [Points (Pontos de coleta)] (N ---- N) [Itens (Itens para a coleta)]
+
+// MIGRATIONS
+   
+   É o histórico do banco de dados. "Controle de versão do banco de dados". Ajuda a 
+trabalhar com mais de um dev no time.   
+

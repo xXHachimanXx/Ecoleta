@@ -1,4 +1,4 @@
-import { Request, Response, response } from "express"; // Para tipar req e res no TS
+import { Request, Response } from 'express'; // Para tipar req e res no TS
 import knex from '../database/connection';
 
 class PointsController {
@@ -13,8 +13,8 @@ class PointsController {
         // Buscar todos os pontos em que pelo menos um item que tem 
         // o item_id que estamos buscando
         const points = await knex('points')
-            .join('point_items', 'points.id', '=', 'points_items.points_id')
-            .whereIn('points_items.points_id', parsedItems)
+            .join('point_items', 'points.id', '=', 'point_items.point_id')
+            .whereIn('point_items.item_id', parsedItems)
             .where('city', String(city))
             .where('uf', String(uf))
             .distinct()
@@ -26,20 +26,20 @@ class PointsController {
     }
 
     async show(req: Request, res: Response) {
-        const { id } = req.params;
+        const id = req.params.id;
 
         const point = await knex('points').where('id', id).first();
 
         if (!point) {
             return res.status(400).json({ message: 'Point not found' });
         }
-
+        
         const items = await knex('items')
-            .join('point_items', 'items.id', '=', 'points_items.item_id')
+            .join('point_items', 'items.id', '=', 'point_items.item_id')
             .where('point_items.point_id', id)
             .select('items.title');
-
-        return response.json({ point, items });
+        
+        return res.json({ point, items });
     }
 
     async create(req: Request, res: Response) {

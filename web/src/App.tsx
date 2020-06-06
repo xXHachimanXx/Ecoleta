@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
 
-import Header from './containers/Header';
-import Home from './pages/Home/index';
+import Routes from './routes';
 
 const App: React.FC = () => {
   return (
-    <Home />
+    <Routes />
   );
 }
 

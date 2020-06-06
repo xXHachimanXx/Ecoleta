@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppLoading } from "expo";
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { StyleSheet, StatusBar } from 'react-native';
 import { Roboto_400Regular, Roboto_500Medium } from "@expo-google-fonts/roboto";
 import { Ubuntu_700Bold, useFonts } from "@expo-google-fonts/ubuntu";
 
@@ -26,6 +26,7 @@ export default function App() {
   );
 }
 
+/*
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -34,3 +35,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+*/

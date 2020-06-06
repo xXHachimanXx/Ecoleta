@@ -1,5 +1,6 @@
 import React from 'react'; 
 import { View, StyleSheet } from "react-native";
+import { Constants } from 'expo';
 
 const Points = () => {
   return(<View />);
@@ -7,6 +8,7 @@ const Points = () => {
 
 export default Points;
 
+/*
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -103,3 +105,4 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
 });
+*/

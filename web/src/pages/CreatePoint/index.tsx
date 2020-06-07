@@ -4,12 +4,14 @@ import { FiArrowLeft } from "react-icons/fi";
 import { Map, TileLayer, Marker } from "react-leaflet";
 import { LeafletMouseEvent } from 'leaflet'
 import axios from 'axios';
+import logo from '../../assets/logo.svg';
+
+import Dropzone from '../../components/Dropzone/index';
 
 import api from '../../services/api';
 
 import './styles.css';
 
-import logo from '../../assets/logo.svg';
 
 /* 
    Sempre que criamos um array ou um OBJ temos que 
@@ -169,6 +171,8 @@ const CreatePoint = () => {
 
       <form onSubmit={handleSubmit}>
         <h1>Cadastro do <br /> ponto de coleta</h1>
+
+        <Dropzone />
 
         <fieldset>
           <legend>

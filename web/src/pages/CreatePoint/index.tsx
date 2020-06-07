@@ -151,7 +151,7 @@ const CreatePoint = () => {
     data.append('items', items.join(','));
 
     if (selectedFile){
-      data.append('iamge', selectedFile);
+      data.append('image', selectedFile);
     }
 
 

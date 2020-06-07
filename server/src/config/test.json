@@ -1,0 +1,10 @@
+{
+    "name": "Mercadinho Big Bom", 
+    "email": "mercado@gmail.com", 
+    "whatsapp": "994506782", 
+    "latitude": -46.90878, 
+    "longitude": -35.7687, 
+    "city": "Rio do Sul", 
+    "uf": "SC",
+      "items": [1, 2, 6]
+  }

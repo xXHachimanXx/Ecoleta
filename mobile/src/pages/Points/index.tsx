@@ -15,6 +15,10 @@ const Points = () => {
     navigation.goBack();
   }
 
+  function handleNavigateToDetail() {
+    navigation.navigate('Detail');
+  }
+
   return (
     <>
       <View style={styles.container}>

@@ -7,7 +7,7 @@ import { View, StyleSheet, TouchableOpacity, Image, Text, SafeAreaView, Linking 
 
 import Constants from 'expo-constants';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { RectButton } from "react-native-gesture-handler";
+import { RectButton, TextInput } from "react-native-gesture-handler";
 
 import api from "../../services/api";
 
@@ -70,6 +70,7 @@ const Detail = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
+
         <TouchableOpacity onPress={handleNavigateBack}>
           <Icon name="arrow-left" size={20} color="#34cb79" />
         </TouchableOpacity>
@@ -85,8 +86,11 @@ const Detail = () => {
           <Text style={styles.addressTitle}>Endereço</Text>
           <Text style={styles.addressContent}>{data.point.cidade}, {data.point.uf}</Text>
         </View>
+
       </View>
+
       <View style={styles.footer}>
+
         <RectButton style={styles.button} onPress={handleWhatsapp}>
           <FontAwesome name="whatsapp" size={20} color="#FFF" />
           <Text style={styles.buttonText}>Whatsapp</Text>
@@ -96,7 +100,9 @@ const Detail = () => {
           <Icon name="mail" size={20} color="#FFF" />
           <Text style={styles.buttonText}>E-mail</Text>
         </RectButton>
+
       </View>
+
     </SafeAreaView>
   );
 };
@@ -158,6 +164,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+
+
 
   button: {
     width: '48%',

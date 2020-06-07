@@ -116,7 +116,7 @@ const CreatePoint = () => {
   function handleSelectItem(id: number) {
     const alreadySelected = selectedItems.findIndex(item => item === id);
 
-    if(alreadySelected >= 0){
+    if (alreadySelected >= 0) {
       const filteredItems = selectedItems.filter(item => item !== id);
 
       setSelectedItems(filteredItems);
@@ -130,14 +130,14 @@ const CreatePoint = () => {
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    const {name, email, whatsapp} = formData;
+    const { name, email, whatsapp } = formData;
     const uf = selectedUf;
     const city = selectedCity;
     const [latitude, longitude] = selectedPosition;
-    const items =  selectedItems;
+    const items = selectedItems;
 
     const data = {
-      name, 
+      name,
       email,
       whatsapp,
       uf,
@@ -255,11 +255,11 @@ const CreatePoint = () => {
               items.map(item => (
                 <li
                   key={item.id}
-                  onClick={() => handleSelectItem(item.id)} 
-                  className={selectedItems.includes(item.id)? 'selected' : ''}
-                  >
+                  onClick={() => handleSelectItem(item.id)}
+                  className={selectedItems.includes(item.id) ? 'selected' : ''}
+                >
                   <img src={item.image_url} alt={item.title} />
-                  <span>item.title</span>
+                  <span>{item.title}</span>
                 </li>
               ))
             }

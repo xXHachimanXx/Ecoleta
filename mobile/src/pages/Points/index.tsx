@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, Alert } from "react-native";
 import Constants from 'expo-constants';
 import MapView, { Marker } from 'react-native-maps';
+import * as Location from 'expo-location';
 
 import { Feather as Icon } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -20,7 +21,26 @@ const Points = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
+  const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);
+
   const navigation = useNavigation();
+
+  useEffect(() => {
+    async function loadPosition() {
+      const { status } = await Location.requestPermissionsAsync();
+
+      if (status !== 'granted') {
+        Alert.alert('Oooooops...', 'Precisamos de sua permissão para obter a localização');
+        return;
+      }
+
+      const location = await Location.getCurrentPositionAsync();
+      const { latitude, longitude } = location.coords;
+
+      setInitialPosition([latitude, longitude]);
+    }
+    loadPosition();
+  }, []);
 
   useEffect(() => {
     api.get('items').then(res => {
@@ -41,6 +61,7 @@ const Points = () => {
 
     if (alreadySelected >= 0) {
       const filteredItems = selectedItems.filter(item => item !== id);
+      setSelectedItems(filteredItems);
     }
     else {
       setSelectedItems([...selectedItems, id]);
@@ -58,29 +79,32 @@ const Points = () => {
         <Text style={styles.description}>Encontre no mapa um ponto de coleta.</Text>
 
         <View style={styles.mapContainer}>
-          <MapView
-            style={styles.map}
-            initialRegion={{
-              latitude: -19.955712,
-              longitude: -43.9943168,
-              latitudeDelta: 0.014,
-              longitudeDelta: 0.014,
-            }}
-          >
-            <Marker
-              style={styles.mapMarker}
-              onPress={handleNavigateToDetail}
-              coordinate={{
-                latitude: -19.955712,
-                longitude: -43.9943168,
+          {initialPosition[0] !== 0 && (
+            <MapView
+              style={styles.map}
+              loadingEnabled={initialPosition[0] === 0}
+              initialRegion={{
+                latitude: initialPosition[0],
+                longitude: initialPosition[1],
+                latitudeDelta: 0.014,
+                longitudeDelta: 0.014,
               }}
             >
-              <View style={styles.mapMarkerContainer}>
-                <Image style={styles.mapMarkerImage} source={{ uri: "https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60" }} />
-                <Text style={styles.mapMarkerTitle}>Mercado</Text>
-              </View>
-            </Marker>
-          </MapView>
+              <Marker
+                style={styles.mapMarker}
+                onPress={handleNavigateToDetail}
+                coordinate={{
+                  latitude: -19.955712,
+                  longitude: -43.9943168,
+                }}
+              >
+                <View style={styles.mapMarkerContainer}>
+                  <Image style={styles.mapMarkerImage} source={{ uri: "https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60" }} />
+                  <Text style={styles.mapMarkerTitle}>Mercado</Text>
+                </View>
+              </Marker>
+            </MapView>
+          )}
         </View>
       </View>
 
@@ -94,8 +118,8 @@ const Points = () => {
             <TouchableOpacity
               key={String(item.id)}
               style={[
-                styles.item, 
-                styles.selectedItem.include(item.id)? styles.selectedItem : {}
+                styles.item,
+                styles.selectedItem.include(item.id) ? styles.selectedItem : {}
               ]}
               onPress={() => hundleSelectedItem(item.id)}
               activeOpacity={0.6}

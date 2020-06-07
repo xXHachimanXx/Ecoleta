@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
+import * as MailComposer from 'expo-mail-composer';
+
 import { Feather as Icon, FontAwesome } from "@expo/vector-icons";
-import { View, StyleSheet, TouchableOpacity, Image, Text, SafeAreaView } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Image, Text, SafeAreaView, Linking } from "react-native";
+
 import Constants from 'expo-constants';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { RectButton } from "react-native-gesture-handler";
@@ -45,6 +48,23 @@ const Detail = () => {
     navigation.goBack();
   }
 
+  /**
+   * Função para compor email
+   */
+  function handleComposeMail() {
+    MailComposer.composeAsync({
+      subject: 'Interesse na coleta de resíduos',
+      recipients: [data.point.email],
+    });
+  }
+
+  /**
+   * Função para compor mensagem de Whatsapp
+   */
+  function handleWhatsapp() {
+    Linking.openURL(`whatsapp://send?phone=${data.point.whatsapp}&text=Tenho interesse na coleta de resíduos`);
+  }
+
   if (!data.point) { return null; }
 
   return (
@@ -58,7 +78,7 @@ const Detail = () => {
 
         <Text style={styles.pointName}>{data.point.name}</Text>
         <Text style={styles.pointItems}>
-          {data.items.map( item => item.title).join(', ')}
+          {data.items.map(item => item.title).join(', ')}
         </Text>
 
         <View style={styles.address}>
@@ -67,12 +87,12 @@ const Detail = () => {
         </View>
       </View>
       <View style={styles.footer}>
-        <RectButton style={styles.button} onPress={() => { }}>
+        <RectButton style={styles.button} onPress={handleWhatsapp}>
           <FontAwesome name="whatsapp" size={20} color="#FFF" />
           <Text style={styles.buttonText}>Whatsapp</Text>
         </RectButton>
 
-        <RectButton style={styles.button} onPress={() => { }}>
+        <RectButton style={styles.button} onPress={handleComposeMail}>
           <Icon name="mail" size={20} color="#FFF" />
           <Text style={styles.buttonText}>E-mail</Text>
         </RectButton>

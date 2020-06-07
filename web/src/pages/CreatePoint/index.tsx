@@ -110,7 +110,7 @@ const CreatePoint = () => {
 
     const { name, value } = event.target;
 
-    setFormData({ ...formData, [name]: name })
+    setFormData({ ...formData, [name]: value })
   }
 
   function handleSelectItem(id: number) {

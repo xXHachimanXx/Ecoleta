@@ -23,7 +23,7 @@
 O ♻️Ecoleta é uma aplicação que facilita a busca por pontos de coleta de resíduos recicláveis.
 
 ## **:computer: COMO FUNCIONA?**
-Através da aplicação **web** as **empresas** poderão se cadastrar inserindo os seguintes dados:
+Através da aplicação **web** os **ponto de coleta** poderão ser cadastrados inserindo os seguintes dados:
 <ol>
   <li>Nome</li>
   <li>Email</li>

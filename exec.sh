@@ -14,7 +14,6 @@ function Mobile() {
 function Server() {
 	cd ./server
 	npm run knex:migrate &&
-	npm run knex:seed &&
 	npm run dev
 	cd ..
 }

@@ -45,6 +45,19 @@ Através da aplicação **web** os **ponto de coleta** poderão ser cadastrados 
 Pelo **aplicativo móvel** os **"coletadores"** podem explorar o **mapa interativo** e procurar por pontos de coleta próximos à ele.
 Além disso, o Ecoleta permite que este usuário entre em contato com diretamente com as empresas por **e-mail** ou **Whatsapp**.
 
+## **:rocket: Como utilizar?**
+Há um script chamado `exec.sh` para facilitar este processo. Para executá-lo, digite os seguintes comandos:
+```sh
+# Dar permissão de execução do script
+chmod +x exec.sh
+
+# Executar
+./exec.sh
+```
+Tanto a aplicação web quanto a mobile necessitam do servidor backend para funcionar devidamente. Portanto, escolha opção **"Server"** antes de rodar 
+o **"Web"** e o **"Mobile"**. 
+#### OBS.:
+Por enquanto será necessário rodar o script novamente para cada opção escolhida pois ainda estamos em construção :construction_worker:.
 
 
 <!-- links -->

@@ -56,6 +56,15 @@ chmod +x exec.sh
 ```
 Tanto a aplicação web quanto a mobile necessitam do servidor backend para funcionar devidamente. Portanto, escolha opção **"Server"** antes de rodar 
 o **"Web"** e o **"Mobile"**. 
+
+Também é possível passar a opção desejada diretamente pela linha de comando:
+- Web: `$ ./exec.sh web`
+- Mobile: `$ ./exec.sh mobile`
+- Server: `$ ./exec.sh server`
+- Atualizar: `$ ./exec.sh update`
+
+Esta última opção tem a função de atualizar todas as dependências do projeto.
+
 #### OBS.:
 Por enquanto será necessário rodar o script novamente para cada opção escolhida pois ainda estamos em construção :construction_worker:.
 
